@@ -13,7 +13,7 @@ import type {
 
 /** Create configured Axios instance */
 const client: AxiosInstance = axios.create({
-  baseURL: '/api/v1',
+  baseURL: import.meta.env.VITE_API_URL || '/api/v1',
   headers: { 'Content-Type': 'application/json' },
   timeout: 10000,
 });
