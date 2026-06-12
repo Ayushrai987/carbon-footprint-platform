@@ -7,6 +7,8 @@ A comprehensive, production-grade web application that empowers individuals to t
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 [![Test Coverage](https://img.shields.io/badge/Coverage-82%25-brightgreen.svg)]()
 
+![EcoTrack Dashboard Preview](README_assets/dashboard_mockup.png)
+
 ---
 
 ## 📋 Table of Contents
