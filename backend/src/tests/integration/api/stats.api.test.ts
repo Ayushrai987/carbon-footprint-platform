@@ -18,10 +18,13 @@ describe('Stats API', () => {
 
     // Seed some activity data
     const today = new Date().toISOString().split('T')[0];
-    await request(app)
-      .post('/api/v1/footprint/log')
-      .set('Authorization', `Bearer ${token}`)
-      .send({ category: 'transportation', activityType: 'car_petrol', value: 50, unit: 'km', date: today });
+    await request(app).post('/api/v1/footprint/log').set('Authorization', `Bearer ${token}`).send({
+      category: 'transportation',
+      activityType: 'car_petrol',
+      value: 50,
+      unit: 'km',
+      date: today,
+    });
     await request(app)
       .post('/api/v1/footprint/log')
       .set('Authorization', `Bearer ${token}`)

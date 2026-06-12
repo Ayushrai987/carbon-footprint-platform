@@ -12,6 +12,7 @@ import { AuthenticatedUser } from '../../types';
 
 /** Extend Express Request to include authenticated user */
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: AuthenticatedUser;
@@ -36,7 +37,11 @@ export function authenticate(req: Request, _res: Response, next: NextFunction): 
 
     const parts = authHeader.split(' ');
     if (parts.length !== 2 || parts[0] !== 'Bearer') {
-      throw new AuthError('Invalid authorization format. Use: Bearer <token>', 401, 'INVALID_FORMAT');
+      throw new AuthError(
+        'Invalid authorization format. Use: Bearer <token>',
+        401,
+        'INVALID_FORMAT',
+      );
     }
 
     const token = parts[1];

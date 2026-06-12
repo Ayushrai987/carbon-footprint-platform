@@ -7,7 +7,6 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../../utils/logger';
-import { AuthError } from '../../services/auth.service';
 
 /** Structured error with status code and error code */
 interface AppError extends Error {
@@ -42,9 +41,7 @@ export function errorHandler(
     error: {
       code,
       message,
-      ...(process.env.NODE_ENV === 'development' && statusCode >= 500
-        ? { stack: err.stack }
-        : {}),
+      ...(process.env.NODE_ENV === 'development' && statusCode >= 500 ? { stack: err.stack } : {}),
     },
   });
 }
