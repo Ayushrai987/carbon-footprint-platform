@@ -3,9 +3,16 @@
  * @description Zustand store for footprint activity state management.
  */
 
-import { create } from 'zustand';
-import type { FootprintRecord, StatsResponse, BreakdownResponse, TrendResponse, Recommendation, LogActivityRequest } from '../types';
-import { footprint, stats, recommendations } from '../api/client';
+import { create } from "zustand";
+import type {
+  FootprintRecord,
+  StatsResponse,
+  BreakdownResponse,
+  TrendResponse,
+  Recommendation,
+  LogActivityRequest,
+} from "../types";
+import { footprint, stats, recommendations } from "../api/client";
 
 interface FootprintState {
   todayRecords: FootprintRecord[];
@@ -54,8 +61,9 @@ export const useFootprintStore = create<FootprintState>((set, get) => ({
       get().fetchBreakdown();
       return record;
     } catch (err: unknown) {
-      const message = (err as { response?: { data?: { error?: { message?: string } } } })
-        ?.response?.data?.error?.message || 'Failed to log activity';
+      const message =
+        (err as { response?: { data?: { error?: { message?: string } } } })
+          ?.response?.data?.error?.message || "Failed to log activity";
       set({ error: message, isLoading: false });
       throw new Error(message);
     }
@@ -97,7 +105,7 @@ export const useFootprintStore = create<FootprintState>((set, get) => ({
     }
   },
 
-  fetchBreakdown: async (period = 'month') => {
+  fetchBreakdown: async (period = "month") => {
     try {
       const response = await stats.getBreakdown(period);
       set({ breakdownData: response.data || null });
@@ -106,7 +114,7 @@ export const useFootprintStore = create<FootprintState>((set, get) => ({
     }
   },
 
-  fetchTrend: async (period = 'month') => {
+  fetchTrend: async (period = "month") => {
     try {
       const response = await stats.getTrend(period);
       set({ trendData: response.data || null });
@@ -134,8 +142,9 @@ export const useFootprintStore = create<FootprintState>((set, get) => ({
       }));
       get().fetchStats();
     } catch (err: unknown) {
-      const message = (err as { response?: { data?: { error?: { message?: string } } } })
-        ?.response?.data?.error?.message || 'Failed to delete activity';
+      const message =
+        (err as { response?: { data?: { error?: { message?: string } } } })
+          ?.response?.data?.error?.message || "Failed to delete activity";
       set({ error: message });
     }
   },

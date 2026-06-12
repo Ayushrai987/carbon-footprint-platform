@@ -5,7 +5,11 @@
  */
 
 /** Emission categories supported by the platform */
-export type EmissionCategory = 'transportation' | 'energy' | 'food' | 'shopping';
+export type EmissionCategory =
+  | "transportation"
+  | "energy"
+  | "food"
+  | "shopping";
 
 /** Public user profile (no sensitive fields) */
 export interface User {
@@ -36,7 +40,7 @@ export interface Recommendation {
   category: EmissionCategory;
   action: string;
   impact: number;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: "easy" | "medium" | "hard";
   priority: number;
   description: string;
 }
@@ -51,7 +55,11 @@ export interface AuthTokens {
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
-  error?: { code: string; message: string; details?: Array<{ field: string; message: string }> };
+  error?: {
+    code: string;
+    message: string;
+    details?: Array<{ field: string; message: string }>;
+  };
   pagination?: PaginationMeta;
 }
 
@@ -140,7 +148,7 @@ export interface LogActivityRequest {
 /** Toast notification */
 export interface Toast {
   id: string;
-  type: 'success' | 'error' | 'warning' | 'info';
+  type: "success" | "error" | "warning" | "info";
   message: string;
   duration?: number;
 }
